@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Generate MD5 and SHA-256 file checksums and
+          compare files to verify their integrity.">
+
+    <title>HashVault | File Integrity Checker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="/" class="brand">
+        <span class="brand-icon">⌘</span>
+        HashVault
+    </a>
+
+    <span class="status">
+        <span class="status-dot"></span>
+        Secure Processing
+    </span>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="eyebrow">FILE INTEGRITY TOOLKIT</div>
+
+        <h1>Every file has a <span>fingerprint.</span></h1>
+
+        <p>
+            Generate cryptographic checksums and compare files
+            with a simple, reliable file integrity checker.
+        </p>
+
+        <div class="hero-tags">
+            <span>SHA-256</span>
+            <span>MD5</span>
+            <span>No Account Required</span>
+        </div>
+    </section>
+
+    <section class="panel">
+
+        <div class="section-heading">
+            <div class="section-number">01</div>
+
+            <div>
+                <h2>Generate checksum</h2>
+                <p>Upload a file to calculate its digital fingerprint.</p>
+            </div>
+        </div>
+
+        <div class="upload-box" id="singleDrop">
+            <div class="upload-icon">↑</div>
+
+            <h3>Drop your file here</h3>
+
+            <p>or choose a file from your computer</p>
+
+            <input type="file" id="singleFile" hidden>
+
+            <button class="button secondary"
+                    id="chooseSingle"
+                    type="button">
+                Browse Files
+            </button>
+
+            <div class="file-info" id="singleInfo">
+                Maximum upload size: 50 MB
+            </div>
+        </div>
+
+        <button class="button primary full-width"
+                id="generateButton"
+                type="button">
+            Generate Checksums →
+        </button>
+
+        <div id="hashResults" class="results hidden">
+
+            <div class="result-header">
+                <h3>Checksum results</h3>
+
+                <button class="text-button"
+                        id="downloadResults"
+                        type="button">
+                    Download .txt
+                </button>
+            </div>
+
+            <div class="metadata" id="fileMetadata"></div>
+
+            <div class="hash-card">
+                <div class="hash-title">
+                    <span>MD5</span>
+                    <button class="copy-button"
+                            data-copy="md5">
+                        Copy
+                    </button>
+                </div>
+
+                <code id="md5Value"></code>
+            </div>
+
+            <div class="hash-card">
+                <div class="hash-title">
+                    <span>SHA-256</span>
+                    <button class="copy-button"
+                            data-copy="sha256">
+                        Copy
+                    </button>
+                </div>
+
+                <code id="sha256Value"></code>
+            </div>
+
+        </div>
+
+        <div id="hashMessage" class="message hidden"></div>
+
+    </section>
+
+    <section class="panel">
+
+        <div class="section-heading">
+            <div class="section-number">02</div>
+
+            <div>
+                <h2>Compare two files</h2>
+                <p>
+                    Determine whether two files contain identical data.
+                </p>
+            </div>
+        </div>
+
+        <div class="compare-grid">
+
+            <div class="compare-upload">
+                <label for="compareFile1">FILE 01</label>
+
+                <div class="mini-upload">
+                    <input type="file" id="compareFile1" hidden>
+
+                    <button class="button secondary"
+                            type="button"
+                            id="chooseCompare1">
+                        + Choose File
+                    </button>
+
+                    <p id="compareInfo1">No file selected</p>
+                </div>
+            </div>
+
+            <div class="compare-upload">
+                <label for="compareFile2">FILE 02</label>
+
+                <div class="mini-upload">
+                    <input type="file" id="compareFile2" hidden>
+
+                    <button class="button secondary"
+                            type="button"
+                            id="chooseCompare2">
+                        + Choose File
+                    </button>
+
+                    <p id="compareInfo2">No file selected</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="button primary full-width"
+                id="compareButton"
+                type="button">
+            Compare Files →
+        </button>
+
+        <div id="compareResult" class="compare-result hidden"></div>
+
+        <div id="compareMessage" class="message hidden"></div>
+
+    </section>
+
+    <section class="info-strip">
+        <div>
+            <span class="info-icon">01</span>
+            <h3>Choose</h3>
+            <p>Select the file you want to verify.</p>
+        </div>
+
+        <div>
+            <span class="info-icon">02</span>
+            <h3>Calculate</h3>
+            <p>Generate its cryptographic checksum.</p>
+        </div>
+
+        <div>
+            <span class="info-icon">03</span>
+            <h3>Verify</h3>
+            <p>Compare files and check their integrity.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <span>HashVault</span>
+    <span>Built with Python & Flask</span>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
